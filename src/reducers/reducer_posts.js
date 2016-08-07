@@ -7,7 +7,7 @@ export default function( state = INITIAL_STATE, action) {
     case FETCH_POSTS:
       // should always return a new state
       return { ...state, all:action.payload.data};
-    case FETCH_POSTS:
+    case FETCH_POST:
       // should always return a new state
     return { ...state, post:action.payload.data};
     default:

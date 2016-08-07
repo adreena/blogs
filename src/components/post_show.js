@@ -9,8 +9,16 @@ class PostShow extends Component{
     this.props.fetchPost(this.props.params.id);
   }
   render(){
+    if(!this.props.post){
+        return <div>Loading ...</div>
+    }
     return(
-      <div >{this.props.params.id}</div>
+      <div>
+        <h3>{this.props.post.title}</h3>
+        <h6>Categories: {this.props.post.categories}</h6>
+        <p>{this.props.post.content}</p>
+
+      </div>
     );
   }
 }
@@ -19,4 +27,7 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators({fetchPost},dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(PostShow);
+function mapStateToProps(state){
+  return {post: state.posts.post};
+}
+export default connect(mapStateToProps, mapDispatchToProps)(PostShow);
